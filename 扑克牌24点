@@ -1,0 +1,240 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+
+public class Main_Professional {
+	//获取输入所对应的数值
+	public static int getNum(String str){
+		for(int i=2; i<10; i++){
+			if((i+"").equals(str)){
+				return i;
+			}
+		}
+		if(str.equals("A")){
+			return 1;
+		}else if (str.equals("T")){
+			return 10;
+		}else if (str.equals("J")){
+			return 11;
+		}else if (str.equals("Q")){
+			return 12;
+		}else if (str.equals("K")){
+			return 13;
+		}else{
+			return -1;
+		}
+		
+	}
+	
+	//得到输入数字的不同顺序排序的数组
+	public static ArrayList<int[]> getIputNumSorting(int[] inputNum){
+		ArrayList<int[]> resultList = new ArrayList<int[]>();
+		int[] inputNum1 = {inputNum[0],inputNum[1],inputNum[2],inputNum[3]};
+		int[] inputNum2 = {inputNum[0],inputNum[1],inputNum[3],inputNum[2]};
+		int[] inputNum3 = {inputNum[0],inputNum[2],inputNum[1],inputNum[3]};
+		int[] inputNum4 = {inputNum[0],inputNum[2],inputNum[3],inputNum[1]};
+		int[] inputNum5 = {inputNum[0],inputNum[3],inputNum[1],inputNum[2]};
+		int[] inputNum6 = {inputNum[0],inputNum[3],inputNum[2],inputNum[1]};
+		
+		int[] inputNum7 = {inputNum[1],inputNum[0],inputNum[2],inputNum[3]};
+		int[] inputNum8 = {inputNum[1],inputNum[0],inputNum[3],inputNum[2]};
+		int[] inputNum9 = {inputNum[1],inputNum[2],inputNum[0],inputNum[3]};
+		int[] inputNum10 = {inputNum[1],inputNum[2],inputNum[3],inputNum[0]};
+		int[] inputNum11 = {inputNum[1],inputNum[3],inputNum[0],inputNum[2]};
+		int[] inputNum12 = {inputNum[1],inputNum[3],inputNum[2],inputNum[0]};
+		
+		int[] inputNum13 = {inputNum[2],inputNum[0],inputNum[1],inputNum[3]};
+		int[] inputNum14 = {inputNum[2],inputNum[0],inputNum[3],inputNum[1]};
+		int[] inputNum15 = {inputNum[2],inputNum[1],inputNum[0],inputNum[3]};
+		int[] inputNum16 = {inputNum[2],inputNum[1],inputNum[3],inputNum[0]};
+		int[] inputNum17 = {inputNum[2],inputNum[3],inputNum[0],inputNum[1]};
+		int[] inputNum18 = {inputNum[2],inputNum[3],inputNum[1],inputNum[0]};
+		
+		int[] inputNum19 = {inputNum[3],inputNum[0],inputNum[2],inputNum[1]};
+		int[] inputNum20 = {inputNum[3],inputNum[0],inputNum[1],inputNum[2]};
+		int[] inputNum21 = {inputNum[3],inputNum[2],inputNum[0],inputNum[1]};
+		int[] inputNum22 = {inputNum[3],inputNum[2],inputNum[1],inputNum[0]};
+		int[] inputNum23 = {inputNum[3],inputNum[1],inputNum[0],inputNum[2]};
+		int[] inputNum24 = {inputNum[3],inputNum[1],inputNum[2],inputNum[0]};
+		
+		
+		resultList.add(0,inputNum1);
+		resultList.add(1,inputNum2);
+		resultList.add(2,inputNum3);
+		resultList.add(3,inputNum4);
+		resultList.add(4,inputNum5);
+		resultList.add(5,inputNum6);
+		resultList.add(6,inputNum7);
+		resultList.add(7,inputNum8);
+		resultList.add(8,inputNum9);
+		resultList.add(9,inputNum10);
+		resultList.add(10,inputNum11);
+		resultList.add(11,inputNum12);
+		resultList.add(12,inputNum13);
+		resultList.add(13,inputNum14);
+		resultList.add(14,inputNum15);
+		resultList.add(15,inputNum16);
+		resultList.add(16,inputNum17);
+		resultList.add(17,inputNum18);
+		resultList.add(18,inputNum19);
+		resultList.add(19,inputNum20);
+		resultList.add(20,inputNum21);
+		resultList.add(21,inputNum22);
+		resultList.add(22,inputNum23);
+		resultList.add(23,inputNum24);
+		return resultList;
+	}
+	
+	//得到括号的顺序
+	public static ArrayList<String[]> getParenthesesStr(){
+		ArrayList<String[]> parenthesesStr = new ArrayList<String[]>();
+		String[] str = {"First","Second","Third"};
+		parenthesesStr.add(0,str);
+		String[] str2 = {"First","Third","Second"};
+		parenthesesStr.add(1,str2);
+		String[] str3 = {"Second","First","Third"};
+		parenthesesStr.add(2,str3);
+		String[] str4 = {"Second","Third","First"};
+		parenthesesStr.add(3,str4);
+		String[] str5 = {"Third","First","Second"};
+		parenthesesStr.add(4,str5);
+		String[] str6 = {"Third","Second","First"};
+		parenthesesStr.add(5,str6);
+		return parenthesesStr;
+	}
+	
+	//得到三个运算符的组合（可重复）
+	public static ArrayList<char[]> getSymbolList(char[] symbolChar){
+		ArrayList<char[]> symbolList = new ArrayList<char[]>();
+		int n=0;
+		for(int i=0; i<symbolChar.length;i++){
+			for(int j=0; j<symbolChar.length;j++){
+				for(int k=0; k<symbolChar.length;k++){
+					char[] c = {symbolChar[i],symbolChar[j],symbolChar[k]};
+					symbolList.add(n++,c);
+				}
+			}
+		}
+		return symbolList;
+	}
+	
+	//执行字符串的表达式，与24对比
+	public static boolean doExecute(String str){
+		boolean flag = false;
+		//把表达式转换成算术表达式
+		ScriptEngineManager manager = new ScriptEngineManager();  
+        ScriptEngine engine = manager.getEngineByName("js");
+        double d = 0;
+		try {
+			d = (double) engine.eval(str);
+			//System.out.println(str);
+		} catch (ScriptException e) {
+			System.out.println("表达式："+str+"有异常，执行错误！");
+			e.printStackTrace();
+		}
+        if(d == 24){
+        	flag = true;
+        	System.out.println("符合情况的表达式: "+str);
+        }
+		return flag;
+	}
+	
+	//获取字符串表达式的算术运算结果
+	public static boolean isEvalStringValueCorrect(ArrayList<int[]> inputNumSortingList,ArrayList<char[]> symbolList,
+			ArrayList<String[]> parenthesesStrList){
+		boolean flag = false;
+		//算术表达式
+		String str="";
+		//循环（三层）
+		for(int i=0; i<inputNumSortingList.size();i++){
+			for(int j=0; j<symbolList.size();j++){
+				for(int k=0; k<parenthesesStrList.size();k++){
+					//拼接表达式
+					int[] inputNumSorting = inputNumSortingList.get(i);
+					char[] symbolSorting = symbolList.get(j);
+					String[] parenthesesSorting = parenthesesStrList.get(k);
+					if(parenthesesSorting[0].equals("First")){//第一个括号在第一个算术运算符
+						str = "("+inputNumSorting[0]+symbolSorting[0]+inputNumSorting[1]+")";
+						if(parenthesesSorting[1].equals("Second")){//第二个括号在第二个算术运算符
+							str = "("+str+symbolSorting[1]+inputNumSorting[2]+")";
+							str = "("+str+symbolSorting[2]+inputNumSorting[3]+")";//第三个括号在第三个算术运算符
+						}else{
+							str = str+symbolSorting[1]+"("+inputNumSorting[2]+symbolSorting[2]+inputNumSorting[3]+")";
+							str = "("+str+")";
+						}
+					}else if(parenthesesSorting[0].equals("Second")){//第一个括号在第二个算术运算符
+						str = "("+inputNumSorting[1]+symbolSorting[1]+inputNumSorting[2]+")";
+						if(parenthesesSorting[1].equals("First")){
+							str = "("+inputNumSorting[0]+symbolSorting[0]+str+")";
+							str = "("+str+symbolSorting[2]+inputNumSorting[3]+")";
+						}else{
+							str = "("+str+symbolSorting[2]+inputNumSorting[3]+")";
+							str = "("+inputNumSorting[0]+symbolSorting[0]+str+")";
+						}
+					}else if(parenthesesSorting[0].equals("Third")){//第一个括号在第三个算术运算符
+						str = "("+inputNumSorting[2]+symbolSorting[2]+inputNumSorting[3]+")";
+						if(parenthesesSorting[1].equals("First")){
+							str = "("+inputNumSorting[0]+symbolSorting[0]+inputNumSorting[1]+")"+symbolSorting[1]+str;
+							str = "("+str+")";
+						}else{
+							str = "("+inputNumSorting[1]+symbolSorting[1]+str+")";
+							str = "("+inputNumSorting[0]+symbolSorting[0]+str+")";
+						}
+					}
+					//表达式运算结果校验，是24则返回结果，否则继续循环
+					if(doExecute(str)){
+						flag = true;
+						return flag;
+					}else{
+						continue;
+					}
+				}
+			}
+		}
+		return flag;
+	}
+	
+	
+	public static void main(String[] args) throws ScriptException{
+		while(true){
+			Scanner s = new Scanner(System.in);
+			//输入值，数字(2-9)或字母A,T,J,Q,K
+			String s1 = s.next();
+			int numA = getNum(s1);
+			s1 = s.next();
+			int numB = getNum(s1);
+			s1 = s.next();
+			int numC = getNum(s1);
+			s1 = s.next();
+			int numD = getNum(s1);
+			
+			//输入值非法，返回
+			if(numA == -1 || numB == -1 || numC == -1 || numD == -1){
+				System.out.println("输入值范围：数字(2-9)或字母A,T,J,Q,K");
+				return;
+			}
+			
+			//输入值数组
+			int[] inputNum = {numA,numB,numC,numD};
+			//四个输入值的所有排序情况
+			ArrayList<int[]> inputNumSortingList = getIputNumSorting(inputNum);
+			//符号数组
+			char[] symbolChar = {'+','-','*','/'};//四选三
+			//三个符号的所有排序情况
+			ArrayList<char[]> symbolList = getSymbolList(symbolChar);
+			
+			//括号不同位置的情况
+			ArrayList<String[]> parenthesesStrList = getParenthesesStr();
+			
+			if(isEvalStringValueCorrect(inputNumSortingList,symbolList,parenthesesStrList)){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+		}
+	}
+}
