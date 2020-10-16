@@ -1,3 +1,5 @@
+这是2018年4月的贴子，现在是2020年10月，dubbo重启支持到现在还可以，盘活了社区的活跃度
+
 https://blog.csdn.net/u010664947/article/details/80007767
 
 注册+springmvc=springcloud
@@ -11,3 +13,5 @@ https://blog.csdn.net/u010664947/article/details/80007767
 
 
 Spring Cloud Config 可以实现统一配置中心，对配置进行统一管理；使用Spring Cloud Netflix 可以实现Netflix 组件的功能 - 服务发现（Eureka）、智能路由（Zuul）、客户端负载均衡（Ribbon）。
+
+spring cloud整机，dubbo需要自己组装；整机的性能有保证，组装的机子更自由。
