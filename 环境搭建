@@ -1,0 +1,41 @@
+sit环境搭建  
+流程步骤：
+
+1,资源
+   oracle 1  --->
+   mysql -->
+       地址： /rdscloud/mysql/#/?app_id=com.huawei.network.fip
+	   公共服务--》network_fip_common_sit    fipDB_sit/fipDB_sit
+	   业务服务，第三方 ---》network_fip_db_sit  fipDB_sit/fipDB_sit
+   容器 6
+   
+2，申请集群
+   前台---》前台同事自己弄
+   后台---》 
+   
+3，搭建环境
+    代码地址： 
+	/groups/ITEquipmentProducts/DigitalResearchInstitute/FIP/detail
+    fip_gateway --》master
+	fip_common--->master
+	fip_third_party---》develop
+	fip_management ---》develop
+	
+    初始化脚本
+	公共服务脚本
+	--》
+	配置公共服务
+	业务服务 脚本
+	
+	本地测试，网关--》业务服务---》公共服务 是否可用
+		公共服务也需要配置，对照uat 环境的公共服务配置下sit
+		通过网关，调用业务服务
+		
+
+4，应用配置中心
+
+5，acs 平台配置启动项
+
+6.部署验证
+   忽略健康检查，快速验证
+   看日志定位问题
