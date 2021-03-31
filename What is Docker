@@ -56,4 +56,30 @@ server-->host os-->hypervisor--> guest os-->Docker Engine--> bins/libs-->app（�
 3、上面是应用层，政务大数据支持惠民、善政、兴业三大类智慧城市应用，以及IOC可视化应用态势感知、辅助决策等数据消费; 政务信息共享网站是面向委办局的入口，呈现的是信息资源目录和数据资产; 
 公共数据开放网站提供门户面向企业、公众使用数据
 
+1、编译业务代码 app.js：
+        console。log("Received request from”+ request.connection.remoteAdddress);
+        response.writeHead(200);
+        response.end(*You've hit" + os.hostname() + “\n");
+}
+var www = http.createServer(handler);
+www.listen(8080);
 
+2、编写dockerfile：把业务代码融进去
+FROM node
+ADD app.js /app.js
+ENTRYPOINT ["node","appjs"]
+
+3、打包镜像 
+docker build -t mynode2 .
+
+4、上传镜像仓库，push到本地仓库或docker hub上
+
+5、拉起容器镜像实例，
+//容器运行
+docker run --name mynode-container -p 8081:8080 -d mynode
+
+//进入容器
+docker exec -it instancesid /bin/bash
+
+ps -a 查看容器进程
+df -TH 查看文件目录
